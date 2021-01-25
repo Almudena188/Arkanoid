@@ -12,7 +12,6 @@ public class MiCanvas extends Canvas {
 
 	// creo la lista donde se van a guardar todos los elementos ( pelota, ladrillo y
 	// nave) que son actores
-
 	private static List<Actor> actores = new ArrayList<Actor>();
 
 	public MiCanvas() {
@@ -34,12 +33,39 @@ public class MiCanvas extends Canvas {
 		actores.add(pelota);
 
 		// bucle para crear varios ladrillos
+		int implementadorY = 18;
+		int implementadorX = 1;
 
-		int implementadorX = 0;
-		for (int i = 0; i < 9; i++) {
-			Ladrillo lad = new Ladrillo(implementadorX + 2, 2, 50, 20);
-			implementadorX = implementadorX + 54;
+		for (int i = 0; i < 54; i++) {
+
+			if (i == 9 || i == 18 || i == 27 || i == 36 || i == 45) {
+				implementadorY = implementadorY + 22;
+				implementadorX = 1;
+			}
+
+			Ladrillo lad = new Ladrillo(implementadorX, implementadorY, 50, 20);
+
+			if (i <= 7) {
+				lad.setColor(Color.red);
+			}
+			if (i > 8 && i <= 17) {
+				lad.setColor(Color.yellow);
+			}
+			if (i > 17 && i <= 26) {
+				lad.setColor(Color.pink);
+			}
+			if (i > 26 && i <= 35) {
+				lad.setColor(Color.cyan);
+			}
+			if (i > 35 && i <= 44) {
+				lad.setColor(Color.green);
+			}
+			if (i > 44) {
+				lad.setColor(Color.orange);
+			}
 			actores.add(lad);
+			implementadorX = implementadorX + 54;
+
 		}
 
 		// creo la nave

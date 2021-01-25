@@ -49,7 +49,7 @@ public class Pelota extends Actor {
 		this.x += this.velocidadX;
 		// evito que se salga de la venta por los lados derecha e izquierda
 		if (this.x < 0 || this.x > 490.5) { // 502( ancho de la ventana) - 7.5 ( radio de la pelota ) = 494.5
-			this.velocidadX = -this.velocidadX; // cambio el sentido de la pelota
+			this.velocidadX =- this.velocidadX; // cambio el sentido de la pelota
 
 		}
 		

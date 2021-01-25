@@ -6,6 +6,7 @@ import java.awt.Graphics;
 public class Ladrillo extends Actor {
 
 	private String nombre;
+	private Color color;
 
 	public Ladrillo() {
 		super();
@@ -17,12 +18,6 @@ public class Ladrillo extends Actor {
 
 	}
 
-	@Override
-	public void paint(Graphics g) {
-		g.setColor(Color.YELLOW);
-		g.fillRect(this.getX(), this.getY(), this.getAncho(), this.getLargo());
-
-	}
 
 	// GETTER AND SETTER
 
@@ -33,11 +28,29 @@ public class Ladrillo extends Actor {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	
+	public Color getColor() {
+		return color;
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
+	}
+	
 
 	@Override
 	public void mueve() {
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public void paint(Graphics g) {
+		g.setColor(this.color);
+		g.fillRect(this.getX(), this.getY(), this.getAncho(), this.getLargo());
+
+	}
+
+
+
 
 }
