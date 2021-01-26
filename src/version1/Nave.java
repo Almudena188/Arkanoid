@@ -17,7 +17,6 @@ public class Nave extends Actor {
 		// TODO Auto-generated constructor stub
 	}
 
-	
 	// GETTER AND SETTER
 
 	public int getVelocidad() {
@@ -35,6 +34,7 @@ public class Nave extends Actor {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
 	@Override
 	public void paint(Graphics g) {
 		g.setColor(Color.CYAN);
@@ -42,11 +42,20 @@ public class Nave extends Actor {
 
 	}
 
-	
 	@Override
 	public void mueve() {
 		// TODO Auto-generated method stub
+
+	}
+
+	public void mueveMouse(int x) {
+		this.x = x;
+		// guardo lo que mide el canvas
+		int anchoCanvas = Ventana.getInstance().getJframeWidht();
 		
+		if(this.x > anchoCanvas - this.getAncho())
+			this.x = anchoCanvas -this.getAncho();
+				
 	}
 
 }

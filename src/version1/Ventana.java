@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.DataBufferByte;
@@ -21,6 +23,8 @@ public class Ventana {
 	private static final int JFRAME_HEIGHT = 640;
 	static MiCanvas canvas = new MiCanvas();
 	static List<Actor> actores = null;
+	private Nave nave = null;
+	private static Ventana instance = null;
 
 	public Ventana() {
 
@@ -36,6 +40,16 @@ public class Ventana {
 		ventana.setBounds(0, 0, JFRAME_WIDHT, JFRAME_HEIGHT);
 		ventana.setVisible(true);
 
+		// Clase anonima paa mover el raton
+		canvas.addMouseMotionListener(new MouseAdapter() {
+			public void mouseMove(MouseEvent e) {
+				super.mouseMoved(e);
+				nave.mueveMouse(e.getX());
+			}
+
+		});
+		;
+
 //		Clase anónima en la que sale una ventanita para cerrar el programa cuando le das a la cruz de cerrar
 		ventana.addWindowListener(new WindowAdapter() {
 
@@ -50,7 +64,7 @@ public class Ventana {
 			}
 
 		});
-		
+
 		movimiento();
 
 	}
@@ -94,5 +108,19 @@ public class Ventana {
 		} while (true);
 
 	}
+// implemento el Singleton
+	public static Ventana getInstance() {
+		if (instance == null) {
+			instance = new Ventana();
+
+		}
+		return instance;
+	}
+//GETTER
+	public static int getJframeWidht() {
+		return JFRAME_WIDHT;
+	}
+	
+	
 
 }
