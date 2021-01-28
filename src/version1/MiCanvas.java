@@ -14,22 +14,26 @@ public class MiCanvas extends Canvas {
 	// nave) que son actores
 	private static List<Actor> actores = new ArrayList<Actor>();
 
+	Nave nave = null;
+	Pelota pelota = null;
+	
+	
 	public MiCanvas() {
 		super();
 
 	}
-
+	
 	/**
 	 * creo todos los actores
 	 * 
 	 * @return
 	 */
 
-	public static List<Actor> creadorDeActores() {
+	public List<Actor> creadorDeActores() {
 
 		// creo la pelota
 
-		Pelota pelota = new Pelota(251, 320, 15, 15);
+		pelota = new Pelota(251, 320, 15, 15);
 		actores.add(pelota);
 
 		// bucle para crear varios ladrillos
@@ -69,11 +73,12 @@ public class MiCanvas extends Canvas {
 		}
 
 		// creo la nave
-		Nave nave = new Nave(201, 525, 100, 10);
+		nave = new Nave(201, 525, 100, 10);
 		actores.add(nave);
 
 		return actores;
 	}
+	
 
 	/**
 	 * Metodo para pintar la lista de actores
@@ -89,5 +94,13 @@ public class MiCanvas extends Canvas {
 		}
 
 	}
+
+	public Nave getNave() {
+		return nave;
+	}
+	
+	
+	
+	
 
 }

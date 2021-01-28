@@ -54,8 +54,7 @@ public class Nave extends Actor {
 		int anchoCanvas = Ventana.getInstance().getJframeWidht();
 		
 		if(this.x > anchoCanvas - this.getAncho())
-			this.x = anchoCanvas -this.getAncho();
-				
+			this.x = anchoCanvas -this.getAncho();			
 	}
 
 }

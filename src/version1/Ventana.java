@@ -22,14 +22,15 @@ public class Ventana {
 	private static final int JFRAME_WIDHT = 502;
 	private static final int JFRAME_HEIGHT = 640;
 	static MiCanvas canvas = new MiCanvas();
-	static List<Actor> actores = null;
-	private Nave nave = null;
+	static List<Actor> actores =  null;
+	private static Nave nave = null;
 	private static Ventana instance = null;
 
 	public Ventana() {
 
 		// guardo la lista de los actores creada en la clase MiCanvas
-		this.actores = MiCanvas.creadorDeActores();
+		actores = canvas.creadorDeActores();
+		this.nave = canvas.getNave();
 
 		// Le doy forma a la ventana
 		JFrame ventana = new JFrame("Arkanoid");
@@ -38,17 +39,23 @@ public class Ventana {
 		panel.setLayout(new BorderLayout());
 		panel.add(canvas, BorderLayout.CENTER);
 		ventana.setBounds(0, 0, JFRAME_WIDHT, JFRAME_HEIGHT);
-		ventana.setVisible(true);
+		
 
 		// Clase anonima paa mover el raton
 		canvas.addMouseMotionListener(new MouseAdapter() {
-			public void mouseMove(MouseEvent e) {
+			
+
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				// TODO Auto-generated method stub
 				super.mouseMoved(e);
 				nave.mueveMouse(e.getX());
 			}
 
 		});
 		;
+		
+		ventana.setVisible(true);
 
 //		Clase anónima en la que sale una ventanita para cerrar el programa cuando le das a la cruz de cerrar
 		ventana.addWindowListener(new WindowAdapter() {
@@ -64,8 +71,6 @@ public class Ventana {
 			}
 
 		});
-
-		movimiento();
 
 	}
 
@@ -108,6 +113,8 @@ public class Ventana {
 		} while (true);
 
 	}
+	
+	
 // implemento el Singleton
 	public static Ventana getInstance() {
 		if (instance == null) {
@@ -120,7 +127,7 @@ public class Ventana {
 	public static int getJframeWidht() {
 		return JFRAME_WIDHT;
 	}
-	
+
 	
 
 }
