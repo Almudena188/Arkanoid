@@ -2,10 +2,14 @@ package version1;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 
 public class Nave extends Actor {
 	private int velocidad;
 	private String nombre;
+	private boolean derecha, izquierda; // si no pongo valor lo iguala a false por defecto
+
+	protected static final int PLAYER_SPEED = 4; // velocidad de la nave
 
 	public Nave() {
 		super();
@@ -44,17 +48,83 @@ public class Nave extends Actor {
 
 	@Override
 	public void mueve() {
-		// TODO Auto-generated method stub
+		
+		MiCanvas canvas = Ventana.getInstance().getCanvas();
+
+		this.x += this.velocidad;
+		// para que no se salga por la izquierda
+		if (this.x < 0) {
+			this.x = 0;
+		}
+
+		// para que no se salga por la derecha
+		if (this.x > (canvas.getWidth() - this.getAncho())) {
+			this.x = canvas.getWidth() - this.getAncho();
+		}
 
 	}
 
+	/**
+	 * Mueve la nave por raton
+	 * 
+	 * @param x
+	 */
 	public void mueveMouse(int x) {
 		this.x = x;
 		// guardo lo que mide el canvas
 		int anchoCanvas = Ventana.getInstance().getJframeWidht();
-		
-		if(this.x > anchoCanvas - this.getAncho())
-			this.x = anchoCanvas -this.getAncho();			
+
+		if (this.x > anchoCanvas - this.getAncho())
+			this.x = anchoCanvas - this.getAncho();
+	}
+
+	/**
+	 * para que se mueva cuando presiona la tecla
+	 * 
+	 * @param e
+	 */
+	public void keyPressed(KeyEvent e) {
+		System.out.println("tecla pulsada");
+		switch (e.getKeyCode()) {
+
+		case KeyEvent.VK_LEFT:
+			izquierda = true;
+			break;
+		case KeyEvent.VK_RIGHT:
+			derecha = true;
+			break;
+		}
+
+		updateSpeed();
+
+	}
+
+	/**
+	 * para que cuando leante la tecla deje de moverse
+	 * 
+	 * @param e
+	 */
+	public void keyReleased(KeyEvent e) {
+		switch (e.getKeyCode()) {
+		case KeyEvent.VK_LEFT:
+			izquierda = false;
+		case KeyEvent.VK_RIGHT:
+			derecha = false;
+
+		}
+
+		updateSpeed();
+
+	}
+
+	protected void updateSpeed() {
+		this.velocidad = 0;
+		if (derecha) {
+			this.velocidad = PLAYER_SPEED;
+		}
+		if (izquierda) {
+			this.velocidad = -PLAYER_SPEED;
+		}
 	}
 
 }

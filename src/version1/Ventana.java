@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
@@ -22,12 +24,13 @@ public class Ventana {
 	private static final int JFRAME_WIDHT = 502;
 	private static final int JFRAME_HEIGHT = 640;
 	static MiCanvas canvas = new MiCanvas();
+	
 	static List<Actor> actores =  null;
 	private static Nave nave = null;
 	private static Ventana instance = null;
 
 	public Ventana() {
-
+		
 		// guardo la lista de los actores creada en la clase MiCanvas
 		actores = canvas.creadorDeActores();
 		this.nave = canvas.getNave();
@@ -35,7 +38,7 @@ public class Ventana {
 		// Le doy forma a la ventana
 		JFrame ventana = new JFrame("Arkanoid");
 		JPanel panel = (JPanel) ventana.getContentPane();
-
+		
 		panel.setLayout(new BorderLayout());
 		panel.add(canvas, BorderLayout.CENTER);
 		ventana.setBounds(0, 0, JFRAME_WIDHT, JFRAME_HEIGHT);
@@ -55,7 +58,29 @@ public class Ventana {
 		});
 		;
 		
+		canvas.addKeyListener(new KeyAdapter() {
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				super.keyPressed(e);
+				nave.keyPressed(e);
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				super.keyReleased(e);
+				nave.keyReleased(e);
+			}
+			
+			
+			
+		});
+		
 		ventana.setVisible(true);
+		canvas.requestFocus();
+		
 
 //		Clase anónima en la que sale una ventanita para cerrar el programa cuando le das a la cruz de cerrar
 		ventana.addWindowListener(new WindowAdapter() {
@@ -127,6 +152,11 @@ public class Ventana {
 	public static int getJframeWidht() {
 		return JFRAME_WIDHT;
 	}
+
+	public static MiCanvas getCanvas() {
+		return canvas;
+	}
+	
 
 	
 
