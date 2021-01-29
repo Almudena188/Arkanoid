@@ -20,7 +20,6 @@ public class MiCanvas extends Canvas {
 	
 	public MiCanvas() {
 		super();
-
 	}
 	
 	/**

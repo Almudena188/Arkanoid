@@ -23,7 +23,8 @@ public class Ventana {
 
 	private static final int JFRAME_WIDHT = 502;
 	private static final int JFRAME_HEIGHT = 640;
-	static MiCanvas canvas = new MiCanvas();
+	MiCanvas canvas = new MiCanvas();
+	JFrame ventana;
 	
 	static List<Actor> actores =  null;
 	private static Nave nave = null;
@@ -36,7 +37,7 @@ public class Ventana {
 		this.nave = canvas.getNave();
 
 		// Le doy forma a la ventana
-		JFrame ventana = new JFrame("Arkanoid");
+		ventana = new JFrame("Arkanoid");
 		JPanel panel = (JPanel) ventana.getContentPane();
 		
 		panel.setLayout(new BorderLayout());
@@ -56,13 +57,13 @@ public class Ventana {
 			}
 
 		});
-		;
 		
 		canvas.addKeyListener(new KeyAdapter() {
 
 			@Override
 			public void keyPressed(KeyEvent e) {
 				// TODO Auto-generated method stub
+				System.out.println("key pressed");
 				super.keyPressed(e);
 				nave.keyPressed(e);
 			}
@@ -79,7 +80,8 @@ public class Ventana {
 		});
 		
 		ventana.setVisible(true);
-		canvas.requestFocus();
+		
+
 		
 
 //		Clase anónima en la que sale una ventanita para cerrar el programa cuando le das a la cruz de cerrar
@@ -102,13 +104,19 @@ public class Ventana {
 	/**
 	 * Hace que se mueva la pelota
 	 */
-	public static void movimiento() {
+	public void movimiento() {
 
+		boolean yaTenemosFoco = false;
+		
 		int repeticionesPorSegundi = 60;
 		int millisPorCadaFrame = 1000 / repeticionesPorSegundi;
 
 		// hago un bucle infinito
 		do {
+			
+			if (ventana.getFocusOwner() != null && !ventana.getFocusOwner().equals(canvas)) {
+				canvas.requestFocus();
+			}
 
 			// cojo los milis-segundos acutales
 			long millisAntesDeEscena = new Date().getTime();
@@ -153,9 +161,10 @@ public class Ventana {
 		return JFRAME_WIDHT;
 	}
 
-	public static MiCanvas getCanvas() {
+	public MiCanvas getCanvas() {
 		return canvas;
 	}
+
 	
 
 	
