@@ -84,7 +84,7 @@ public class Nave extends Actor {
 	 * @param e
 	 */
 	public void keyPressed(KeyEvent e) {
-		System.out.println("tecla pulsada");
+		
 		switch (e.getKeyCode()) {
 
 		case KeyEvent.VK_LEFT:
