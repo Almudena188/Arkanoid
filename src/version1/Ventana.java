@@ -10,6 +10,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.image.BufferStrategy;
 import java.awt.image.DataBufferByte;
 import java.util.ArrayList;
 import java.util.Date;
@@ -29,6 +30,10 @@ public class Ventana {
 	static List<Actor> actores =  null;
 	private static Nave nave = null;
 	private static Ventana instance = null;
+	
+	// BufferStrategy usado para conseguir la técnica de doble búffer
+	private BufferStrategy strategy;
+
 
 	public Ventana() {
 		
@@ -98,6 +103,11 @@ public class Ventana {
 			}
 
 		});
+		
+		// El Canvas se dibujará en pantalla con una estrategia de doble búffer
+				ventana.createBufferStrategy(2);
+				// Obtengo una referencia a la estrategia de doble búffer.
+				strategy = canvas.getBufferStrategy();
 
 	}
 
