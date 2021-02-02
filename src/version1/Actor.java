@@ -2,6 +2,7 @@ package version1;
 
 import java.awt.Graphics;
 
+
 public abstract class Actor {
 
 	protected int x;
@@ -19,6 +20,8 @@ public abstract class Actor {
 		this.y = y;
 		this.ancho = ancho;
 		this.largo = largo;
+	}
+	public void colisionaCon(Actor a) {
 	}
 
 	public abstract void paint(Graphics g);

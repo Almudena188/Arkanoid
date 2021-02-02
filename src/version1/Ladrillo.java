@@ -3,6 +3,7 @@ package version1;
 import java.awt.Color;
 import java.awt.Graphics;
 
+
 public class Ladrillo extends Actor {
 
 	private String nombre;
@@ -49,7 +50,18 @@ public class Ladrillo extends Actor {
 		g.fillRect(this.getX(), this.getY(), this.getAncho(), this.getLargo());
 
 	}
-
+	
+	/**
+	 * Este método se disparará cuando un actor colisione con el disparo
+	 */
+	@Override
+	public void colisionaCon(Actor a) {
+		super.colisionaCon(a);
+		// Si colisionamos con monstruo, eliminamos el disparo
+		if (a instanceof Actor) {
+			Ventana.getInstance().eliminaActor(this);
+		}
+	}
 
 
 

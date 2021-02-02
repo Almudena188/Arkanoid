@@ -3,9 +3,11 @@ package version1;
 import java.awt.Color;
 import java.awt.Graphics;
 
+
+
 public class Pelota extends Actor {
-	private int velocidadX = -5;
-	private int velocidadY = -5;
+	private int velocidadX = 5;
+	private int velocidadY = 5;
 
 	public Pelota() {
 		super();
@@ -62,5 +64,20 @@ public class Pelota extends Actor {
 
 		}
 	}
+	
+	
+	@Override
+	public void colisionaCon(Actor a) {
+		super.colisionaCon(a);
+		// si choca con ladrillo baja
+		if (a instanceof Ladrillo) {
+			this.velocidadY +=  5;
+		}
+		// si choca con nave sube
+		if (a instanceof Nave ) {
+			this.velocidadY -= 5;
+		}
+	}
+	
 
 }
