@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
+
 public class Nave extends Actor {
 	private int velocidad;
 	private String nombre;
@@ -17,7 +18,7 @@ public class Nave extends Actor {
 	}
 
 	public Nave(int x, int y, int ancho, int largo) {
-		super(x, y, ancho, largo);
+		super(x, y, ancho, largo,  ImagesCache.getInstance().getImagen(ImagesCache.IMAGEN_PLAYER));
 		// TODO Auto-generated constructor stub
 	}
 
@@ -39,12 +40,12 @@ public class Nave extends Actor {
 		this.nombre = nombre;
 	}
 
-	@Override
-	public void paint(Graphics g) {
-		g.setColor(Color.CYAN);
-		g.fillRect(this.getX(), this.getY(), this.getAncho(), this.getLargo());
-
-	}
+//	@Override
+//	public void paint(Graphics g) {
+//		g.setColor(Color.CYAN);
+//		g.fillRect(this.getX(), this.getY(), this.getAncho(), this.getLargo());
+//
+//	}
 
 	@Override
 	public void mueve() {

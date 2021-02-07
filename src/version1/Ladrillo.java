@@ -15,7 +15,7 @@ public class Ladrillo extends Actor {
 	}
 
 	public Ladrillo(int x, int y, int ancho, int largo) {
-		super(x, y, ancho, largo);
+		super(x, y, ancho, largo,  ImagesCache.getInstance().getImagen(ImagesCache.IMAGEN_LADRILLO));
 
 	}
 
@@ -44,12 +44,12 @@ public class Ladrillo extends Actor {
 		// TODO Auto-generated method stub
 		
 	}
-	@Override
-	public void paint(Graphics g) {
-		g.setColor(this.color);
-		g.fillRect(this.getX(), this.getY(), this.getAncho(), this.getLargo());
-
-	}
+//	@Override
+//	public void paint(Graphics g) {
+//		g.setColor(this.color);
+//		g.fillRect(this.getX(), this.getY(), this.getAncho(), this.getLargo());
+//
+//	}
 	
 	/**
 	 * Este método se disparará cuando un actor colisione con el disparo

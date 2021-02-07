@@ -15,7 +15,7 @@ public class Pelota extends Actor {
 	}
 
 	public Pelota(int x, int y, int ancho, int largo) {
-		super(x, y, ancho, largo);
+		super(x, y, ancho, largo, ImagesCache.getInstance().getImagen(ImagesCache.IMAGEN_PELOTA));
 		// TODO Auto-generated constructor stub
 	}
 
@@ -36,12 +36,12 @@ public class Pelota extends Actor {
 		this.velocidadY = velocidadY;
 	}
 
-	@Override
-	public void paint(Graphics g) {
-		g.setColor(Color.RED);
-		g.fillOval(this.getX(), this.getY(), this.getAncho(), this.getLargo());
-
-	}
+//	@Override
+//	public void paint(Graphics g) {
+//		g.setColor(Color.RED);
+//		g.fillOval(this.getX(), this.getY(), this.getAncho(), this.getLargo());
+//
+//	}
 
 	@Override
 	public void mueve() {
