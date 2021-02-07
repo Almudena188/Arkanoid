@@ -6,8 +6,8 @@ import java.awt.Graphics;
 
 
 public class Pelota extends Actor {
-	private int velocidadX = 5;
-	private int velocidadY = 5;
+	private int velocidadX = -4;
+	private int velocidadY = -4;
 
 	public Pelota() {
 		super();
@@ -49,7 +49,7 @@ public class Pelota extends Actor {
 		// Movimiento horizontal
 		this.x += this.velocidadX;
 		// evito que se salga de la venta por los lados derecha e izquierda
-		if (this.x < 0 || this.x > 490.5) { // 502( ancho de la ventana) - 7.5 ( radio de la pelota ) = 494.5
+		if (this.x < 0 || ( this.x + this.getAncho()) > Ventana.getInstance().getCanvas().getWidth()) { // 502( ancho de la ventana) - 7.5 ( radio de la pelota ) = 494.5
 			this.velocidadX = -this.velocidadX; // cambio el sentido de la pelota
 			
 		
@@ -59,7 +59,7 @@ public class Pelota extends Actor {
 		// Movimiento vertical
 		this.y += this.velocidadY;
 		// evito que se salga de la venta por los lados de arriba y abajo
-		if (this.y < 7.5 || this.y > 600) { // 640( largo de la ventana) - 7.5 ( radio de la pelota ) = 632.5
+		if (this.y < 0 ||( this.y + this.getLargo()) > Ventana.getInstance().getCanvas().getHeight()) { // 640( largo de la ventana) - 7.5 ( radio de la pelota ) = 632.5
 			this.velocidadY = -this.velocidadY; // cambio el sentido de la pelota
 
 		}
@@ -76,6 +76,7 @@ public class Pelota extends Actor {
 		// si choca con nave sube
 		if (a instanceof Nave ) {
 			this.velocidadY -= 4;
+		
 		}
 	}
 	
