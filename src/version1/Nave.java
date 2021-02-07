@@ -18,8 +18,8 @@ public class Nave extends Actor {
 	}
 
 	public Nave(int x, int y, int ancho, int largo) {
-		super(x, y, ancho, largo,  ImagesCache.getInstance().getImagen(ImagesCache.IMAGEN_PLAYER));
-		// TODO Auto-generated constructor stub
+		super(x, y, ancho, largo);
+		this.setSpriteActual(RecursosCache.getInstance().getImagen(RecursosCache.IMAGEN_PLAYER));
 	}
 
 	// GETTER AND SETTER

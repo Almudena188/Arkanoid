@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 
+
 public class Ladrillo extends Actor {
 
 	private String nombre;
@@ -15,8 +16,8 @@ public class Ladrillo extends Actor {
 	}
 
 	public Ladrillo(int x, int y, int ancho, int largo) {
-		super(x, y, ancho, largo,  ImagesCache.getInstance().getImagen(ImagesCache.IMAGEN_LADRILLO));
-
+		super(x, y, ancho, largo);
+		this.setSpriteActual( RecursosCache.getInstance().getImagen(RecursosCache.IMAGEN_LADRILLO));
 	}
 
 
@@ -61,6 +62,9 @@ public class Ladrillo extends Actor {
 		if (a instanceof Actor) {
 			Ventana.getInstance().eliminaActor(this);
 		}
+		RecursosCache.getInstance().playSonido("missile.wav");
+		Ventana.getInstance().incorporaNuevoActor(new Explosion(this.x, this.y));	
+		
 	}
 
 

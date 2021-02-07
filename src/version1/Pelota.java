@@ -15,8 +15,8 @@ public class Pelota extends Actor {
 	}
 
 	public Pelota(int x, int y, int ancho, int largo) {
-		super(x, y, ancho, largo, ImagesCache.getInstance().getImagen(ImagesCache.IMAGEN_PELOTA));
-		// TODO Auto-generated constructor stub
+		super(x, y, ancho, largo);
+		this.setSpriteActual(RecursosCache.getInstance().getImagen(RecursosCache.IMAGEN_PELOTA));
 	}
 
 	// GETTER AND SETTER
@@ -50,7 +50,7 @@ public class Pelota extends Actor {
 		this.x += this.velocidadX;
 		// evito que se salga de la venta por los lados derecha e izquierda
 		if (this.x < 0 || this.x > 490.5) { // 502( ancho de la ventana) - 7.5 ( radio de la pelota ) = 494.5
-			this.velocidadX =- this.velocidadX; // cambio el sentido de la pelota
+			this.velocidadX = -this.velocidadX; // cambio el sentido de la pelota
 			
 		
 
@@ -71,11 +71,11 @@ public class Pelota extends Actor {
 		super.colisionaCon(a);
 		// si choca con ladrillo baja
 		if (a instanceof Ladrillo) {
-			this.velocidadY +=  5;
+			this.velocidadY +=  4;
 		}
 		// si choca con nave sube
 		if (a instanceof Nave ) {
-			this.velocidadY -= 5;
+			this.velocidadY -= 4;
 		}
 	}
 	
