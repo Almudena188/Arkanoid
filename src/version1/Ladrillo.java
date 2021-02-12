@@ -3,8 +3,6 @@ package version1;
 import java.awt.Color;
 import java.awt.Graphics;
 
-
-
 public class Ladrillo extends Actor {
 
 	private String nombre;
@@ -17,9 +15,8 @@ public class Ladrillo extends Actor {
 
 	public Ladrillo(int x, int y, int ancho, int largo) {
 		super(x, y, ancho, largo);
-		this.setSpriteActual( RecursosCache.getInstance().getImagen(RecursosCache.IMAGEN_LADRILLO));
+		this.setSpriteActual(RecursosCache.getInstance().getImagen(RecursosCache.IMAGEN_LADRILLO));
 	}
-
 
 	// GETTER AND SETTER
 
@@ -30,7 +27,7 @@ public class Ladrillo extends Actor {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
+
 	public Color getColor() {
 		return color;
 	}
@@ -38,12 +35,11 @@ public class Ladrillo extends Actor {
 	public void setColor(Color color) {
 		this.color = color;
 	}
-	
 
 	@Override
 	public void mueve() {
 		// TODO Auto-generated method stub
-		
+
 	}
 //	@Override
 //	public void paint(Graphics g) {
@@ -51,7 +47,7 @@ public class Ladrillo extends Actor {
 //		g.fillRect(this.getX(), this.getY(), this.getAncho(), this.getLargo());
 //
 //	}
-	
+
 	/**
 	 * Este método se disparará cuando un actor colisione con el disparo
 	 */
@@ -63,10 +59,8 @@ public class Ladrillo extends Actor {
 			Ventana.getInstance().eliminaActor(this);
 		}
 		RecursosCache.getInstance().playSonido("missile.wav");
-		Ventana.getInstance().incorporaNuevoActor(new Explosion(this.x, this.y));	
-		
+		Ventana.getInstance().incorporaNuevoActor(new Explosion(this.x, this.y));
+
 	}
-
-
 
 }
